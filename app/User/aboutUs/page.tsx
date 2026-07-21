@@ -1,22 +1,24 @@
-import Header from '../../components/layout/Header';
-import Footer from '../../components/aboutUs/layout/Footer';
-import HeroSection from '../../components/aboutUs/about/HeroSection';
-import FeatureGrid from '../../components/aboutUs/about/FeatureGrid';
-import MissionVision from '../../components/aboutUs/about/MissionVision';
-import ValueProps from '../../components/aboutUs/about/ValueProps';
-import TeamSection from '../../components/aboutUs/about/TeamSection';
-import Newsletter from '../../components/aboutUs/about/Newsletter';
+import Header from '@/app/components/layout/Header';
+import Footer from '@/app/components/layout/Footer';
+import HeroSection from '@/app/components/aboutUs/about/HeroSection';
+import OurStory from '@/app/components/aboutUs/about/OurStory';
+import MissionVision from '@/app/components/aboutUs/about/MissionVision';
+import ValueProps from '@/app/components/aboutUs/about/ValueProps';
+import TeamSection from '@/app/components/aboutUs/about/TeamSection';
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-black">
-      <Header />
-      <HeroSection />
-      <FeatureGrid />
-      <MissionVision />
-      <ValueProps />
-      <TeamSection />
-      <Newsletter />
+    <main className="min-h-screen flex flex-col bg-white text-stone-900">
+      <Header activePage="ABOUT US" />
+      
+      <div className="flex-1">
+        <HeroSection />
+        <OurStory />
+        <MissionVision />
+        <ValueProps />
+        <TeamSection />
+      </div>
+      
       <Footer />
     </main>
   );

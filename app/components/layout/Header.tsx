@@ -6,12 +6,14 @@ import { Search, User, Heart, ShoppingBag, ChevronDown, Crown } from 'lucide-rea
 
 interface HeaderProps {
   activePage?: string;
+  wishlistCount?: number;
+  cartCount?: number;
 }
 
-export default function Header({ activePage = 'CONTACT US' }: HeaderProps) {
+export default function Header({ activePage = 'SHOP', wishlistCount = 3, cartCount = 2 }: HeaderProps) {
   const navItems = [
     { name: 'HOME', href: '/User/homePage' },
-    { name: 'SHOP', href: '#' },
+    { name: 'SHOP', href: '/User/shop' },
     { name: 'CATEGORIES', href: '#', hasDropdown: true },
     { name: 'OFFERS', href: '#', badge: 'HOT' },
     { name: 'ABOUT US', href: '/User/aboutUs' },
@@ -74,16 +76,25 @@ export default function Header({ activePage = 'CONTACT US' }: HeaderProps) {
             <User size={22} className="group-hover:scale-110 transition-transform" />
             <span>Account</span>
           </button>
-          <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors group">
-            <Heart size={22} className="group-hover:scale-110 transition-transform" />
+          <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
+            <div className="relative">
+              <Heart size={22} className="group-hover:scale-110 transition-transform" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1.5 -right-2 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+                  {wishlistCount}
+                </span>
+              )}
+            </div>
             <span>Wishlist</span>
           </button>
           <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
             <div className="relative">
               <ShoppingBag size={22} className="group-hover:scale-110 transition-transform" />
-              <span className="absolute -top-1.5 -right-2 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
-                0
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-2 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+                  {cartCount}
+                </span>
+              )}
             </div>
             <span>Cart</span>
           </button>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Search, User, Heart, ShoppingBag, ChevronDown, Crown } from 'lucide-react';
+import { Search, LogIn, UserPlus, Heart, ShoppingBag, ChevronDown, Crown } from 'lucide-react';
 
 interface HeaderProps {
   activePage?: string;
@@ -10,7 +10,7 @@ interface HeaderProps {
   cartCount?: number;
 }
 
-export default function Header({ activePage = 'SHOP', wishlistCount = 3, cartCount = 2 }: HeaderProps) {
+export default function Header({ activePage = 'HOME', wishlistCount = 3, cartCount = 2 }: HeaderProps) {
   const navItems = [
     { name: 'HOME', href: '/User/homePage' },
     { name: 'SHOP', href: '/User/shop' },
@@ -40,9 +40,9 @@ export default function Header({ activePage = 'SHOP', wishlistCount = 3, cartCou
       </div>
 
       {/* Main Header Bar */}
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <Link href="/User/homePage" className="flex items-center gap-2 group">
+        <Link href="/User/homePage" className="flex items-center gap-2 group shrink-0">
           <div className="relative flex items-center justify-center">
             {/* Logo Badge */}
             <div className="bg-[#1e4d2b] text-white font-extrabold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-xs transition-transform group-hover:scale-105">
@@ -54,7 +54,7 @@ export default function Header({ activePage = 'SHOP', wishlistCount = 3, cartCou
         </Link>
 
         {/* Search Bar */}
-        <div className="flex-1 max-w-xl mx-4">
+        <div className="flex-1 max-w-xl mx-2">
           <div className="relative flex items-center">
             <input
               type="text"
@@ -70,34 +70,54 @@ export default function Header({ activePage = 'SHOP', wishlistCount = 3, cartCou
           </div>
         </div>
 
-        {/* Action Icons */}
-        <div className="flex items-center gap-6 text-stone-700 font-medium text-xs">
-          <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors group">
-            <User size={22} className="group-hover:scale-110 transition-transform" />
-            <span>Account</span>
-          </button>
+        {/* Action Controls: Login / Register & Wishlist / Cart Icons */}
+        <div className="flex items-center gap-4 text-stone-700 font-medium text-xs shrink-0">
+          {/* Wishlist Icon */}
           <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
             <div className="relative">
-              <Heart size={22} className="group-hover:scale-110 transition-transform" />
+              <Heart size={20} className="group-hover:scale-110 transition-transform" />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1.5 -right-2 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+                <span className="absolute -top-1.5 -right-2 bg-amber-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
                   {wishlistCount}
                 </span>
               )}
             </div>
-            <span>Wishlist</span>
+            <span className="hidden sm:inline">Wishlist</span>
           </button>
+
+          {/* Cart Icon */}
           <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
             <div className="relative">
-              <ShoppingBag size={22} className="group-hover:scale-110 transition-transform" />
+              <ShoppingBag size={20} className="group-hover:scale-110 transition-transform" />
               {cartCount > 0 && (
                 <span className="absolute -top-1.5 -right-2 bg-amber-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
                   {cartCount}
                 </span>
               )}
             </div>
-            <span>Cart</span>
+            <span className="hidden sm:inline">Cart</span>
           </button>
+
+          {/* Vertical Divider */}
+          <div className="h-7 w-px bg-stone-200 mx-1 hidden sm:block" />
+
+          {/* Login & Register Buttons */}
+          <div className="flex items-center gap-2">
+            <Link
+              href="/User/login"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#1e4d2b] text-[#1e4d2b] hover:bg-[#1e4d2b]/5 font-extrabold text-xs transition-colors cursor-pointer"
+            >
+              <LogIn size={15} />
+              <span>Log In</span>
+            </Link>
+            <Link
+              href="/User/login"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1e4d2b] hover:bg-[#15381f] text-white font-extrabold text-xs transition-all shadow-xs cursor-pointer"
+            >
+              <UserPlus size={15} />
+              <span>Register</span>
+            </Link>
+          </div>
         </div>
       </div>
 

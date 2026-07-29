@@ -248,7 +248,7 @@ export default function LoginForm() {
               {/* Sign Up Link Prompt */}
               <div className="pt-4 border-t border-stone-100 text-center text-xs font-semibold text-stone-600">
                 <span>Don&apos;t have an account? </span>
-                <Link href="#" className="text-[#1e4d2b] font-extrabold hover:underline">
+                <Link href="/register" className="text-[#1e4d2b] font-extrabold hover:underline">
                   Create an Account
                 </Link>
               </div>

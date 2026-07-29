@@ -127,18 +127,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/User/shop" className="hover:text-amber-400 transition-colors">
                   Shop
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
-                  Offers
+                <Link href="/User/aboutUs" className="hover:text-amber-400 transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
@@ -156,27 +151,17 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-stone-300 font-medium">
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/User/login" className="hover:text-amber-400 transition-colors">
                   My Account
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
-                  Track Order
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/refund-policy" className="hover:text-amber-400 transition-colors">
                   Returns & Refunds
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
-                  Shipping Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/faq" className="hover:text-amber-400 transition-colors">
                   FAQ
                 </Link>
               </li>
@@ -190,22 +175,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-stone-300 font-medium">
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/privacy-policy" className="hover:text-amber-400 transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/terms-and-conditions" className="hover:text-amber-400 transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/refund-policy" className="hover:text-amber-400 transition-colors">
                   Refund Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-amber-400 transition-colors">
+                <Link href="/cookie-policy" className="hover:text-amber-400 transition-colors">
                   Cookie Policy
                 </Link>
               </li>

@@ -13,7 +13,9 @@ import {
   X,
   Tag,
   Eye,
-  Filter
+  Filter,
+  Upload,
+  ImageIcon
 } from 'lucide-react';
 
 export interface AdminProduct {
@@ -106,6 +108,20 @@ export default function AdminProductsContent() {
   const [newImage, setNewImage] = useState('/keto_queen_contact_hero.jpg');
   const [newBadge, setNewBadge] = useState('New Arrival');
 
+  // Handle Image File Upload (Convert File to Data URL)
+  const handleImageFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (reader.result) {
+          setNewImage(reader.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleAddProduct = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTitle.trim() || !newPrice) return;
@@ -118,7 +134,7 @@ export default function AdminProductsContent() {
       originalPrice: newOriginalPrice ? parseFloat(newOriginalPrice) : parseFloat(newPrice) * 1.2,
       stock: parseInt(newStock) || 20,
       netCarbs: newNetCarbs,
-      image: newImage,
+      image: newImage || '/keto_queen_contact_hero.jpg',
       status: 'Active',
       badge: newBadge !== 'None' ? newBadge : undefined,
     };
@@ -132,6 +148,7 @@ export default function AdminProductsContent() {
     setNewPrice('');
     setNewOriginalPrice('');
     setNewStock('');
+    setNewImage('/keto_queen_contact_hero.jpg');
 
     setTimeout(() => setSuccessToast(''), 4000);
   };
@@ -171,7 +188,7 @@ export default function AdminProductsContent() {
             PRODUCT MANAGEMENT
           </h1>
           <p className="text-stone-500 text-xs sm:text-sm font-medium mt-0.5">
-            Add new keto products, update prices, and manage stock inventory.
+            Add new keto products with custom images, update prices, and manage stock inventory.
           </p>
         </div>
 
@@ -335,7 +352,7 @@ export default function AdminProductsContent() {
         </div>
       </div>
 
-      {/* ADD NEW PRODUCT MODAL */}
+      {/* ADD NEW PRODUCT MODAL (WITH PRODUCT IMAGE UPLOADER) */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">
           <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 max-w-xl w-full shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto">
@@ -349,7 +366,7 @@ export default function AdminProductsContent() {
               </div>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="text-stone-400 hover:text-stone-700 p-1.5 rounded-full hover:bg-stone-100"
+                className="text-stone-400 hover:text-stone-700 p-1.5 rounded-full hover:bg-stone-100 cursor-pointer"
               >
                 <X size={18} />
               </button>
@@ -357,6 +374,69 @@ export default function AdminProductsContent() {
 
             <form onSubmit={handleAddProduct} className="space-y-4 text-xs font-medium">
               
+              {/* Product Image Uploader Section */}
+              <div className="space-y-2 border-b border-stone-100 pb-4">
+                <label className="block font-extrabold text-stone-800 uppercase tracking-wider">
+                  Product Image <span className="text-red-500">*</span>
+                </label>
+
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  {/* Image Live Preview Thumbnail Box */}
+                  <div className="relative w-24 h-24 rounded-2xl overflow-hidden border-2 border-dashed border-[#1e4d2b]/40 bg-stone-50 flex items-center justify-center shrink-0 shadow-xs">
+                    {newImage ? (
+                      <Image src={newImage} alt="Product Preview" fill className="object-cover" />
+                    ) : (
+                      <ImageIcon size={24} className="text-stone-400" />
+                    )}
+                  </div>
+
+                  {/* Upload File Control & Preset Selection */}
+                  <div className="flex-1 space-y-2.5 w-full">
+                    {/* Choose Local Image File */}
+                    <div>
+                      <label className="inline-flex items-center gap-2 bg-[#1e4d2b]/10 hover:bg-[#1e4d2b] text-[#1e4d2b] hover:text-white font-extrabold text-xs px-4 py-2.5 rounded-xl transition-all cursor-pointer">
+                        <Upload size={15} />
+                        <span>Upload Image File</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageFileUpload}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+
+                    {/* Or Choose Preset Studio Images */}
+                    <div className="space-y-1">
+                      <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">
+                        Or Pick Preset Studio Image:
+                      </span>
+                      <div className="flex items-center gap-2">
+                        {[
+                          { name: 'Keto Hero', src: '/keto_queen_contact_hero.jpg' },
+                          { name: 'Combo Promo', src: '/keto_queen_combo_promo.jpg' },
+                          { name: 'Brand Pack', src: '/biglogo.jpg' },
+                        ].map((preset) => (
+                          <button
+                            key={preset.name}
+                            type="button"
+                            onClick={() => setNewImage(preset.src)}
+                            className={`text-[10px] font-extrabold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
+                              newImage === preset.src
+                                ? 'border-[#1e4d2b] bg-[#1e4d2b] text-white'
+                                : 'border-stone-200 bg-stone-50 text-stone-700 hover:bg-stone-100'
+                            }`}
+                          >
+                            {preset.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
               {/* Product Title */}
               <div className="space-y-1.5">
                 <label className="block font-extrabold text-stone-800 uppercase tracking-wider">
@@ -473,7 +553,7 @@ export default function AdminProductsContent() {
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-5 py-3 rounded-xl border border-stone-200 text-stone-600 font-extrabold uppercase hover:bg-stone-50"
+                  className="px-5 py-3 rounded-xl border border-stone-200 text-stone-600 font-extrabold uppercase hover:bg-stone-50 cursor-pointer"
                 >
                   Cancel
                 </button>

@@ -151,7 +151,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-stone-300 font-medium">
               <li>
-                <Link href="/User/login" className="hover:text-amber-400 transition-colors">
+                <Link href="/account" className="hover:text-amber-400 transition-colors">
                   My Account
                 </Link>
               </li>

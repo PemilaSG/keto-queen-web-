@@ -73,7 +73,7 @@ export default function Header({ activePage = 'HOME', wishlistCount = 3, cartCou
         {/* Action Controls: Login / Register & Wishlist / Cart Icons */}
         <div className="flex items-center gap-4 text-stone-700 font-medium text-xs shrink-0">
           {/* Wishlist Icon */}
-          <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
+          <Link href="/wishlist" className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
             <div className="relative">
               <Heart size={20} className="group-hover:scale-110 transition-transform" />
               {wishlistCount > 0 && (
@@ -83,7 +83,7 @@ export default function Header({ activePage = 'HOME', wishlistCount = 3, cartCou
               )}
             </div>
             <span className="hidden sm:inline">Wishlist</span>
-          </button>
+          </Link>
 
           {/* Cart Icon */}
           <Link href="/cart" className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">

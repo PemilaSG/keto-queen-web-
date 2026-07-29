@@ -156,6 +156,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/track-order" className="hover:text-amber-400 transition-colors">
+                  Track Order
+                </Link>
+              </li>
+              <li>
                 <Link href="/refund-policy" className="hover:text-amber-400 transition-colors">
                   Returns & Refunds
                 </Link>

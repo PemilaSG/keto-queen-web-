@@ -86,7 +86,7 @@ export default function Header({ activePage = 'HOME', wishlistCount = 3, cartCou
           </button>
 
           {/* Cart Icon */}
-          <button className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
+          <Link href="/cart" className="flex flex-col items-center gap-1 hover:text-[#1e4d2b] transition-colors relative group">
             <div className="relative">
               <ShoppingBag size={20} className="group-hover:scale-110 transition-transform" />
               {cartCount > 0 && (
@@ -96,7 +96,7 @@ export default function Header({ activePage = 'HOME', wishlistCount = 3, cartCou
               )}
             </div>
             <span className="hidden sm:inline">Cart</span>
-          </button>
+          </Link>
 
           {/* Vertical Divider */}
           <div className="h-7 w-px bg-stone-200 mx-1 hidden sm:block" />

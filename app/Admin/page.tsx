@@ -1,4 +1,4 @@
-import AdminDashboard from '../Admin/dashboard/page';
+import AdminDashboard from './dashboard/page';
 
 export default function AdminRoute() {
   return <AdminDashboard />;

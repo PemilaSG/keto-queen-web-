@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Package, Plus, Minus, Settings2 } from 'lucide-react';
+import Link from 'next/link';
+import { Package, Plus, Minus, ArrowRight } from 'lucide-react';
 
 interface ProductItem {
   id: string;
@@ -64,10 +65,13 @@ export default function InventoryList() {
             Inventory & Catalog Stock
           </h3>
         </div>
-        <button className="flex items-center gap-1 bg-stone-50 border border-stone-200 hover:bg-stone-100 text-stone-600 font-bold px-3 py-1.5 rounded-xl text-xs transition-colors cursor-pointer">
-          <Settings2 size={12} />
-          <span>Batch Actions</span>
-        </button>
+        <Link
+          href="/Admin/products"
+          className="flex items-center gap-1 bg-[#1e4d2b]/10 hover:bg-[#1e4d2b] hover:text-white text-[#1e4d2b] font-bold px-3 py-1.5 rounded-xl text-xs transition-colors cursor-pointer"
+        >
+          <span>Manage Products</span>
+          <ArrowRight size={12} />
+        </Link>
       </div>
 
       <div className="overflow-x-auto">

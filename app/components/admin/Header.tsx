@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Bell, Search, Calendar, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import { Bell, Search, Calendar, ChevronDown, Plus } from 'lucide-react';
 
 export default function Header() {
   return (
@@ -17,9 +18,18 @@ export default function Header() {
       </div>
 
       {/* Action Row */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
+        {/* Quick Add Product Button */}
+        <Link
+          href="/Admin/products"
+          className="bg-[#1e4d2b] hover:bg-[#15381f] text-white font-extrabold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all shadow-2xs uppercase tracking-wider cursor-pointer shrink-0"
+        >
+          <Plus size={15} />
+          <span className="hidden sm:inline">Add Product</span>
+        </Link>
+
         {/* Search */}
-        <div className="relative hidden md:block w-64">
+        <div className="relative hidden md:block w-56">
           <input
             type="text"
             placeholder="Search orders, products..."
@@ -31,7 +41,7 @@ export default function Header() {
         {/* Date Selector widget */}
         <button className="flex items-center gap-2 border border-stone-200 bg-white hover:bg-stone-50 rounded-xl px-3 py-2 text-xs font-bold text-stone-700 transition-colors shadow-2xs cursor-pointer">
           <Calendar size={14} className="text-[#1e4d2b]" />
-          <span>Last 30 Days</span>
+          <span className="hidden sm:inline">Last 30 Days</span>
           <ChevronDown size={12} className="text-stone-400" />
         </button>
 
